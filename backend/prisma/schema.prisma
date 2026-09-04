@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+
+  ownedBoards  Board[]
+  boardMembers BoardMember[]
+}
+
+model Board {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  ownerId   String
+  createdAt DateTime @default(now())
+
+  owner   User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  members BoardMember[]
+  columns Column[]
+}
+
+model BoardMember {
+  id      String @id @default(cuid())
+  boardId String
+  userId  String
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([boardId, userId])
+}
+
+model Column {
+  id       String @id @default(cuid())
+  title    String
+  position Int
+  boardId  String
+
+  board Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  tasks Task[]
+}
+
+model Task {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  priority    String?   // low | medium | high | urgent
+  dueDate     DateTime?
+  label       String?   // free-text label/tag
+  position    Int
+  columnId    String
+  createdAt   DateTime  @default(now())
+
+  column Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
+}

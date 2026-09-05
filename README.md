@@ -2,6 +2,11 @@
 
 A full-stack Kanban board application with authentication, board sharing, and drag-and-drop task management.
 
+## Live Demo
+
+- **Frontend**: https://kanban-flow-theta.vercel.app
+- **Backend**: https://kanban-flow-fo3g.onrender.com
+
 ## Tech Stack
 
 - **Frontend**: Next.js, React, TypeScript, Tailwind CSS, @dnd-kit
@@ -94,33 +99,36 @@ Open `http://localhost:3000` in your browser.
 
 The frontend and backend are deployed separately since Vercel only supports serverless functions and cannot host a persistent Express server.
 
-### Backend → Railway
+### Backend → Render
 
-1. Go to [railway.app](https://railway.app) → **New Project → Deploy from GitHub → `Kanban-Flow`**
-2. In project settings set:
+1. Go to [render.com](https://render.com) → **New → Web Service**
+2. Connect GitHub → select **`Kanban-Flow`**
+3. Set:
    - **Root Directory**: `backend`
-   - **Build Command**: `npm install && npx prisma generate && npm run build`
+   - **Build Command**: `npm install && npm run build`
    - **Start Command**: `npm start`
-3. Add environment variables:
+   - **Instance Type**: `Free`
+4. Add environment variables:
    ```
    DATABASE_URL      = <your Neon connection string>
    JWT_SECRET        = <strong random string>
    PORT              = 4000
    FRONTEND_URL      = https://<your-vercel-app>.vercel.app
    ```
-4. Copy the generated Railway URL (e.g. `https://kanban-flow-backend.up.railway.app`)
+
+> **Free tier note**: Render spins down after 15 min of inactivity. To keep it alive, use [cron-job.org](https://cron-job.org) to ping `https://<your-render-url>/api/health` every 10 minutes for free.
 
 ### Frontend → Vercel
 
 1. Go to [vercel.com](https://vercel.com) → **New Project → Import `Kanban-Flow`**
-2. `vercel.json` at the repo root sets the root directory to `frontend/` automatically
+2. Set **Root Directory** to `frontend`
 3. Add environment variable:
    ```
-   NEXT_PUBLIC_API_URL = https://<your-railway-url>/api
+   NEXT_PUBLIC_API_URL = https://<your-render-url>/api
    ```
 4. Deploy
 
-> After deploying both, update `FRONTEND_URL` on Railway with your final Vercel URL so CORS is configured correctly.
+> After deploying both, update `FRONTEND_URL` on Render with your final Vercel URL so CORS is configured correctly.
 
 ## API Endpoints
 

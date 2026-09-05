@@ -259,7 +259,7 @@ export default function Home() {
 
           <div className="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/register"
-              className="btn-border-spin w-full sm:w-auto inline-flex items-center justify-center gap-2 font-medium px-8 py-3.5 rounded-lg text-sm">
+              className="btn-border-spin w-full sm:w-auto inline-flex items-center justify-center gap-2 font-medium px-8 py-3.5 rounded-full text-sm">
               Get started free
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

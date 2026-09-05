@@ -159,10 +159,11 @@ export default function Home() {
             </div>
             <span className="text-sm font-bold text-zinc-100">Kanban<span className="text-emerald-400">Flow</span></span>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="text-sm font-medium text-zinc-400 hover:text-zinc-100 transition">Sign in</Link>
-            <Link href="/register" className="text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg transition shadow-lg shadow-emerald-600/20">
+          <div className="flex items-center gap-2">
+            <Link href="/login" className="text-sm font-medium text-zinc-400 hover:text-white px-4 py-1.5 rounded-full border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-150">Sign in</Link>
+            <Link href="/register" className="btn-border-spin text-sm font-semibold px-4 py-1.5 rounded-full flex items-center gap-1.5">
               Get started
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </Link>
           </div>
         </div>
@@ -202,7 +203,7 @@ export default function Home() {
               </svg>
             </Link>
             <Link href="/login"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white font-medium px-8 py-3.5 rounded-lg text-sm transition">
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm font-medium text-zinc-400 hover:text-white px-8 py-3.5 rounded-full border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-150">
               Sign in
             </Link>
           </div>

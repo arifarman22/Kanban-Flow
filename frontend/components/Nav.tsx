@@ -79,12 +79,13 @@ export default function Nav() {
               )}
             </div>
           ) : (
-            <>
-              <Link href="/login" className="text-sm font-medium text-zinc-400 hover:text-zinc-100 transition">Sign in</Link>
-              <Link href="/register" className="text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg transition shadow-lg shadow-emerald-600/20">
+            <div className="flex items-center gap-2">
+              <Link href="/login" className="text-sm font-medium text-zinc-400 hover:text-white px-4 py-1.5 rounded-full border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-150">Sign in</Link>
+              <Link href="/register" className="text-sm font-semibold text-zinc-900 bg-emerald-400 hover:bg-emerald-300 px-4 py-1.5 rounded-full transition-all duration-150 shadow-md shadow-emerald-500/20 flex items-center gap-1.5">
                 Get started
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>

@@ -7,57 +7,120 @@ import { useReveal } from '@/lib/useReveal';
 
 const features = [
   {
+    tag: 'Interaction',
     title: 'Drag & Drop',
-    desc: 'Move tasks between columns and reorder with smooth, conflict-free drag-and-drop powered by stable position indexing.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9h8M8 12h5M8 15h3M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
-      </svg>
+    desc: 'Move tasks between columns with smooth, conflict-free drag-and-drop.',
+    gradient: 'from-emerald-950 to-zinc-900',
+    accent: 'text-emerald-400',
+    visual: (
+      <div className="flex gap-2 w-full group-hover:[&>*:nth-child(2)]:scale-105 group-hover:[&>*:nth-child(2)]:border-emerald-500/60 group-hover:[&>*:nth-child(2)]:shadow-lg group-hover:[&>*:nth-child(2)]:shadow-emerald-500/10">
+        {[{l:'To Do',n:3},{l:'In Progress',n:2,active:true},{l:'Done',n:2}].map(c => (
+          <div key={c.l} className={`flex-1 rounded-xl border p-2.5 transition-all duration-500 ${c.active?'border-emerald-500/40 bg-emerald-500/10':'border-zinc-700/50 bg-zinc-800/50'}`}>
+            <div className={`text-[9px] font-semibold mb-2 ${c.active?'text-emerald-400':'text-zinc-500'}`}>{c.l}</div>
+            {[...Array(c.n)].map((_,j)=><div key={j} className={`h-1.5 rounded-full mb-1.5 transition-all duration-300 ${c.active&&j===0?'bg-emerald-500/80 w-full':'bg-zinc-700 w-4/5'}`}/>)}
+          </div>
+        ))}
+      </div>
     ),
   },
   {
+    tag: 'Sharing',
     title: 'Team Collaboration',
-    desc: 'Share boards with teammates by email. Control who has access and manage members directly from the board.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-      </svg>
+    desc: 'Share boards with teammates by email and manage access instantly.',
+    gradient: 'from-sky-950 to-zinc-900',
+    accent: 'text-sky-400',
+    visual: (
+      <div className="flex flex-col gap-2 w-full">
+        <div className="flex items-center gap-2 bg-zinc-800/60 border border-zinc-700/50 rounded-xl px-3 py-2.5 group-hover:border-sky-500/30 transition-colors duration-300">
+          <div className="flex -space-x-1.5">
+            {['E','A','M','J'].map((l,i)=>(
+              <div key={i} className={`w-6 h-6 rounded-lg text-[9px] font-bold flex items-center justify-center ring-1 ring-zinc-900 ${i===0?'bg-emerald-600 text-white':i===1?'bg-sky-600 text-white':i===2?'bg-amber-600 text-white':'bg-zinc-600 text-zinc-300'}`}>{l}</div>
+            ))}
+          </div>
+          <span className="text-[10px] text-zinc-400 ml-1">4 members</span>
+          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>
+        </div>
+        <div className="flex items-center gap-2 bg-zinc-800/40 border border-dashed border-sky-500/20 group-hover:border-sky-500/40 rounded-xl px-3 py-2 transition-colors duration-300">
+          <svg className="w-3 h-3 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/></svg>
+          <span className="text-[10px] text-sky-500/60">Invite by email…</span>
+        </div>
+      </div>
     ),
   },
   {
+    tag: 'Security',
     title: 'Secure Auth',
-    desc: 'JWT-based authentication with bcrypt password hashing. Access control enforced at every API endpoint.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
+    desc: 'JWT + bcrypt authentication with access control at every endpoint.',
+    gradient: 'from-red-950 to-zinc-900',
+    accent: 'text-red-400',
+    visual: (
+      <div className="flex flex-col gap-1.5 w-full">
+        {['JWT Token','bcrypt hash','Access control'].map((r,i)=>(
+          <div key={r} className={`flex items-center gap-2 bg-zinc-800/60 border border-zinc-700/50 rounded-xl px-3 py-2 transition-all duration-300 group-hover:translate-x-0.5`} style={{transitionDelay:`${i*60}ms`}}>
+            <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
+              <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span className="text-[10px] text-zinc-300 flex-1">{r}</span>
+            <span className="text-[9px] text-emerald-400 font-medium">Active</span>
+          </div>
+        ))}
+      </div>
     ),
   },
   {
+    tag: 'Workspace',
     title: 'Unlimited Boards',
-    desc: 'Create as many boards as you need. Each board has its own columns, tasks, and dedicated team members.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
-      </svg>
+    desc: 'Create as many boards as you need, each with its own team and tasks.',
+    gradient: 'from-violet-950 to-zinc-900',
+    accent: 'text-violet-400',
+    visual: (
+      <div className="grid grid-cols-3 gap-1.5 w-full">
+        {['Product','Marketing','Design','Engineering','Sales','Support'].map((b,i)=>(
+          <div key={b} className={`rounded-xl border px-2 py-2 transition-all duration-300 group-hover:scale-[1.03] ${i===0?'border-emerald-500/40 bg-emerald-500/10':i===3?'border-violet-500/40 bg-violet-500/10':'border-zinc-700/50 bg-zinc-800/50'}`} style={{transitionDelay:`${i*40}ms`}}>
+            <div className={`text-[8px] font-semibold truncate mb-1.5 ${i===0?'text-emerald-400':i===3?'text-violet-400':'text-zinc-500'}`}>{b}</div>
+            <div className="flex gap-0.5">{[...Array(3)].map((_,j)=><div key={j} className="h-1 flex-1 rounded-full bg-zinc-700"/>)}</div>
+          </div>
+        ))}
+      </div>
     ),
   },
   {
+    tag: 'Performance',
     title: 'Real-time Updates',
-    desc: 'Optimistic UI updates keep your board feeling instant. Changes sync to the database with full conflict resolution.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
+    desc: 'Optimistic UI keeps your board instant. Changes sync with full conflict resolution.',
+    gradient: 'from-amber-950 to-zinc-900',
+    accent: 'text-amber-400',
+    visual: (
+      <div className="flex flex-col gap-1.5 w-full">
+        <div className="flex items-center justify-between mb-0.5">
+          <span className="text-[9px] text-zinc-500">Sync status</span>
+          <span className="text-[9px] text-emerald-400 font-medium flex items-center gap-1"><span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse inline-block"/>Live</span>
+        </div>
+        {[{l:'Task moved',ms:'2ms'},{l:'Board updated',ms:'4ms'},{l:'Member joined',ms:'1ms'}].map((e,i)=>(
+          <div key={e.l} className="flex items-center gap-2 bg-zinc-800/60 border border-zinc-700/50 rounded-xl px-3 py-1.5 group-hover:border-amber-500/20 transition-all duration-300" style={{transitionDelay:`${i*60}ms`}}>
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"/>
+            <span className="text-[10px] text-zinc-300 flex-1">{e.l}</span>
+            <span className="text-[9px] text-zinc-600 font-mono">{e.ms}</span>
+          </div>
+        ))}
+      </div>
     ),
   },
   {
+    tag: 'DevOps',
     title: 'Docker Ready',
-    desc: 'Spin up the entire stack — database, backend, and frontend — with a single docker-compose command.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-9-9v4m4-4v4m4-4v4" />
-      </svg>
+    desc: 'Spin up the full stack — DB, backend, frontend — with one command.',
+    gradient: 'from-teal-950 to-zinc-900',
+    accent: 'text-teal-400',
+    visual: (
+      <div className="w-full font-mono">
+        <div className="bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-3 text-[10px] space-y-1.5 group-hover:border-teal-500/30 transition-colors duration-300">
+          <div><span className="text-zinc-600">$</span> <span className="text-teal-400">docker-compose up --build</span></div>
+          <div className="text-zinc-600 group-hover:text-zinc-500 transition-colors">✓ postgres started</div>
+          <div className="text-zinc-600 group-hover:text-zinc-500 transition-colors">✓ backend ready :4000</div>
+          <div className="text-teal-500 group-hover:text-teal-400 transition-colors">✓ frontend ready :3000</div>
+        </div>
+      </div>
     ),
   },
 ];
@@ -253,40 +316,48 @@ export default function Home() {
         </div>
       </section>
 
-{/* ── Features ── */}
+      {/* ── Features ── */}
       <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: heading + subtext + CTA */}
-          <div className="reveal from-left">
-            <p className="text-emerald-400 text-xs font-medium uppercase tracking-widest mb-3">Features</p>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight leading-snug mb-4">
-              Everything your<br />team needs
-            </h2>
-            <p className="text-zinc-400 text-sm font-normal leading-relaxed mb-8 max-w-sm">
-              A focused set of tools to keep your team aligned and your projects moving — without the bloat of enterprise software.
-            </p>
-            <Link href="/register"
-              className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition">
-              Start for free
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-          </div>
+        <div className="reveal text-center mb-14">
+          <p className="text-emerald-400 text-xs font-medium uppercase tracking-widest mb-3">Features</p>
+          <h2 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">Everything your team needs</h2>
+          <p className="text-zinc-500 text-sm mt-3 max-w-md mx-auto font-normal">A focused set of tools to keep your team aligned — without the bloat.</p>
+        </div>
 
-          {/* Right: feature grid */}
-          <div className="reveal from-right grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {features.map(f => (
-              <div key={f.title}
-                className="group bg-zinc-900 border border-zinc-800 hover:border-emerald-500/30 rounded-lg p-5 transition-all duration-200 cursor-default">
-                <div className="w-8 h-8 rounded-md bg-emerald-500/10 border border-emerald-500/15 text-emerald-400 flex items-center justify-center mb-3 group-hover:bg-emerald-500/15 transition-colors">
-                  {f.icon}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((f, i) => (
+            <div key={f.title}
+              className="reveal-card group relative rounded-xl border border-zinc-800 overflow-hidden cursor-default hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/40 hover:border-zinc-700 transition-all duration-300"
+            >
+              {/* Visual area */}
+              <div className={`relative bg-gradient-to-br ${f.gradient} p-5 pb-6 min-h-[160px] flex items-center justify-center overflow-hidden`}>
+                {/* Subtle grid pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+                {/* Glow blob */}
+                <div className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full blur-2xl opacity-30 bg-gradient-to-br ${f.gradient} pointer-events-none`} />
+                <div className="relative w-full">{f.visual}</div>
+              </div>
+
+              {/* Content area */}
+              <div className="bg-zinc-900 px-5 py-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-[10px] font-semibold uppercase tracking-widest ${f.accent}`}>{f.tag}</span>
+                  <svg className={`w-3.5 h-3.5 ${f.accent} opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 group-hover:translate-x-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                  </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-zinc-100 mb-1">{f.title}</h3>
+                <h3 className="text-sm font-semibold text-white mb-1">{f.title}</h3>
                 <p className="text-xs text-zinc-500 leading-relaxed font-normal">{f.desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="reveal text-center mt-10">
+          <Link href="/register" className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition">
+            Start for free
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </Link>
         </div>
       </section>
 

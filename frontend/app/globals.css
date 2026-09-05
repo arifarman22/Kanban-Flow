@@ -82,7 +82,15 @@ html, body {
 .marquee-left  { animation: marquee-left  30s linear infinite; }
 .marquee-right { animation: marquee-right 30s linear infinite; }
 
-/* ── Scroll animations ── */
+/* ── Feature card stagger delays ── */
+.reveal-card { opacity: 0; transform: translateY(36px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal-card.visible { opacity: 1; transform: translateY(0); }
+.reveal-card:nth-child(1) { transition-delay: 0ms; }
+.reveal-card:nth-child(2) { transition-delay: 80ms; }
+.reveal-card:nth-child(3) { transition-delay: 160ms; }
+.reveal-card:nth-child(4) { transition-delay: 240ms; }
+.reveal-card:nth-child(5) { transition-delay: 320ms; }
+.reveal-card:nth-child(6) { transition-delay: 400ms; }
 .reveal {
   opacity: 0;
   transform: translateY(24px);

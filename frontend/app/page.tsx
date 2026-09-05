@@ -223,10 +223,10 @@ export default function Home() {
             <span className="text-sm font-bold text-zinc-100">Kanban<span className="text-emerald-400">Flow</span></span>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/login" className="text-sm font-medium text-zinc-400 hover:text-white px-4 py-1.5 rounded-full border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-150">Sign in</Link>
-            <Link href="/register" className="btn-border-spin text-sm font-semibold px-4 py-1.5 rounded-full flex items-center gap-1.5">
+            <Link href="/login" className="hidden sm:block text-sm font-medium text-zinc-400 hover:text-white px-4 py-1.5 rounded-full border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-150">Sign in</Link>
+            <Link href="/register" className="btn-border-spin text-sm font-semibold px-4 py-1.5 rounded-full flex items-center gap-1.5 whitespace-nowrap">
               Get started
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </Link>
           </div>
         </div>

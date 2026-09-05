@@ -291,7 +291,7 @@ export default function BoardPage() {
           backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(63 63 70 / 0.4) 1px, transparent 0)',
           backgroundSize: '28px 28px',
           ['--col-max-h' as string]: `calc(100svh - 3.5rem - ${headerH}px - 2.5rem)`,
-          touchAction: 'none',
+          touchAction: activeTask ? 'none' : 'pan-x pan-y',
         }}>
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={onDragStart} onDragOver={onDragOver} onDragEnd={onDragEnd}>
           <div className="flex gap-4 h-full items-start">

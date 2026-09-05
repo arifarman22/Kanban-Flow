@@ -1,4 +1,5 @@
 import { Router, Response } from 'express';
+import { Prisma } from '@prisma/client';
 import prisma from '../prisma';
 import { authenticate, AuthRequest } from '../middleware/auth';
 
@@ -68,7 +69,7 @@ router.patch('/:taskId/move', async (req: AuthRequest, res: Response): Promise<v
   const sourceColumnId = task.columnId;
   const isSameColumn = sourceColumnId === targetColumnId;
 
-  await prisma.$transaction(async (tx: typeof prisma) => {
+  await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     if (isSameColumn) {
       const tasks = await tx.task.findMany({ where: { columnId: sourceColumnId }, orderBy: { position: 'asc' } });
       const reordered = tasks.filter((t: { id: string }) => t.id !== taskId);
